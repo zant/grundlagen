@@ -1,4 +1,4 @@
-Require Import PeanoNat.
+Require Import Coq.Arith.PeanoNat.
 
 Theorem l_one : forall m n : nat,
     m <> n -> S m <> S n.
@@ -69,6 +69,24 @@ Theorem l_six : forall x y : nat,
 Proof.
   intros. induction x as [| x' Hx'].
   - simpl. rewrite <- plus_x_O. reflexivity.
-  - simpl. simpl. rewrite Hx'. rewrite plus_n_Sm. reflexivity.
+  - simpl. rewrite Hx'. rewrite plus_n_Sm. reflexivity.
+Qed.
+
+Theorem ineq_x_0 : forall x : nat,
+    x <> 0 -> 0 <> x.
+Proof.
+  intros. induction x as [| x' Hx'].
+  - contradiction.
+  - simpl. auto.
+Qed.
+
+(* Landau's nat starts at 1 so I had to add the extra
+   implication x <> 0 for this to work *)
+Theorem l_seven : forall x y : nat,
+    x <> 0 -> y <> x + y.
+Proof.
+  intros. induction y as [| y' Hy'].
+  - simpl. rewrite l_six. simpl. apply ineq_x_0. assumption.
+  - rewrite <- plus_n_Sm. apply (l_one y' (x + y')). assumption.
 Qed.
 
