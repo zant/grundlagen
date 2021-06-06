@@ -90,3 +90,10 @@ Proof.
   - rewrite <- plus_n_Sm. apply (l_one y' (x + y')). assumption.
 Qed.
 
+Theorem l_eight : forall x y z : nat,
+    y <> z -> x + y <> x + z.
+Proof.    
+  intros. induction x as [| x' Hx'].
+  - simpl. assumption.
+  - simpl. apply (l_one (x' + y) (x' + z)). assumption.
+Qed.
