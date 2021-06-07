@@ -2,7 +2,7 @@ This is my attempt to formalize "Grundlagen der Analysis" by Edmond Landau in [C
 
 My first encounter with this book was while reading "Calculus" by Tom Apostol, in which is mentioned as a resource with the details of the construction of foundational operations and proofs of theorems which in most books are directly taken as properties or axioms.
 
-As I'm currently learning Coq, I though this could be a fun project to work on.
+As I'm currently learning Coq, I thought this could be a fun project to work on.
 
 Tools:
 - [Emacs](https://www.gnu.org/software/emacs/)
