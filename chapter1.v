@@ -37,7 +37,7 @@ Theorem l_four_b : forall x y : nat,
 Proof.
   intros. induction x as [| x' Hx'].
   - simpl. reflexivity.
-  - simpl. rewrite Hx'. reflexivity.
+  - simpl. rewrite <- Hx'. reflexivity.
 Qed.
 
 Theorem l_five : forall x y z : nat,
@@ -97,3 +97,26 @@ Proof.
   - simpl. assumption.
   - simpl. apply (l_one (x' + y) (x' + z)). assumption.
 Qed.
+
+
+(* Had to change a bit the proposition here *)
+Theorem l_nine_a : forall x y : nat,
+    x = y -> (exists u : nat, x <> y + u) /\ (exists v : nat, y <> x + v).
+Proof.
+  intros x y H. 
+  split. 
+  exists 1. rewrite <- H.
+  simpl. rewrite l_four_a. auto.
+  exists 1. rewrite <- H.
+  simpl. rewrite l_four_a. auto. 
+Qed.
+
+
+Theorem l_nine_b : forall x y : nat,
+    (exists u : nat, x = y + u) -> (x <> y) /\ (exists v : nat, y <> x + v).
+Proof.
+  intros x y H.
+Qed.
+
+
+
